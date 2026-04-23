@@ -57,13 +57,27 @@ Detection & Visualization
 
 The following activities were performed to generate logs:
 
-🔹 Multiple failed SSH login attempts
+### 🔹 Multiple failed SSH login attempts
 
-🔹 Successful SSH login
+<img src="screenshots/fail.png" width="800"/>
 
-🔹 Privilege escalation using sudo
 
-🔹 User activity simulation
+<img src="screenshots/failed-attempts.png" width="800"/>
+
+### 🔹 Successful SSH login
+
+<img src="screenshots/accepted-password.png" width="800"/>
+
+
+### 🔹 Privilege escalation using sudo
+
+<img src="screenshots/splunk-sudo.png" width="800"/>
+
+
+### 🔹 User activity simulation
+
+<img src="screenshots/timechart.png" width="800"/>
+
 
 ## 📊 Dashboard
 
