@@ -1,7 +1,5 @@
-# Linux-Log-Analysis-Using-Splunk
-SOC lab project demonstrating Linux log analysis and SSH attack detection using Splunk SIEM (brute force, privilege escalation, and log-based threat detection).
-
 # 🔐 Linux Log Analysis & SSH Attack Detection using Splunk
+SOC lab project demonstrating Linux log analysis and SSH attack detection using Splunk SIEM (brute force, privilege escalation, and log-based threat detection).
 
 ## 📌 Project Overview
 
