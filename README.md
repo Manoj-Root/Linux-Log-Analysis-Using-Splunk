@@ -6,6 +6,8 @@ This project demonstrates how to build a **home SOC (Security Operations Center)
 
 The lab simulates attacker behavior and applies log-based detection using **SPL (Splunk Processing Language)**, similar to real SOC environments.
 
+This project simulates real-world attack detection workflows used in **Security Operations Centers (SOC)** , including brute force detection, anomaly identification, and privilege escalation monitoring.
+
 ---
 
 ## 🧱 Architecture
