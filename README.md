@@ -4,7 +4,7 @@
 
 This project demonstrates how to build a **home SOC (Security Operations Center) lab using Splunk** to monitor Linux authentication logs and detect real-world attack scenarios.
 
-The objective is to simulate attacker behavior and perform **log-based detection using SPL (Splunk Processing Language)**.
+The lab simulates attacker behavior and applies log-based detection using **SPL (Splunk Processing Language)**, similar to real SOC environments.
 
 ---
 
@@ -21,14 +21,24 @@ Detection & Visualization
 
 ---
 
+## 🧠 Attack Scenario
+
+An attacker performs multiple SSH login attempts using brute force techniques. After several failed attempts, the attacker successfully logs into the system and attempts privilege escalation.
+
+This behavior mimics real-world attacks involving:
+
+- Credential brute force
+- Unauthorized access
+- Post-compromise activity
+
 ## 🎯 Objectives
 
-- Collect and forward Linux logs to Splunk  
+- Collect Linux logs in Splunk using a forwarder  
 - Analyze authentication logs (`auth.log`)  
-- Detect SSH brute force attacks  
+- Detect brute force login attempts
 - Identify successful login after multiple failures  
 - Monitor privilege escalation activity  
-- Build detection queries and dashboards  
+- Build SOC-style detection queries  
 
 ---
 
@@ -49,6 +59,17 @@ Detection & Visualization
 
 
 ---
+## 🔍 Detection Logic
+### 🔴 1. SSH Brute Force Detection
+```text
+index=main sourcetype=linux_auth "Failed password"
+| rex "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
+| stats count by src_ip
+| where count >= 5
+```
+Explanation:
+Detects repeated failed login attempts from a single IP, indicating a brute force attack.
+
 
 ## 🧪 Attack Simulation
 
