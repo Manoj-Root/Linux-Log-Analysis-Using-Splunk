@@ -67,9 +67,32 @@ index=main sourcetype=linux_auth "Failed password"
 | stats count by src_ip
 | where count >= 5
 ```
-Explanation:
+**Explanation:**
+
 Detects repeated failed login attempts from a single IP, indicating a brute force attack.
 
+### 🔴 2. Brute Force → Successful Login
+```text
+index=main sourcetype=linux_auth ("Failed password" OR "Accepted password")
+| rex "from (?<src_ip>\d+\.\d+\.\d+\.\d+)"
+| eval status=if(searchmatch("Failed password"),"failed","success")
+| stats count(eval(status="failed")) as failed_attempts 
+        count(eval(status="success")) as success_attempts 
+        by src_ip
+| where failed_attempts >= 3 AND success_attempts > 0
+```
+
+**Explanation:**
+
+Identifies potential account compromise where an attacker successfully logs in after multiple failed attempts.
+
+### ⚡ 3. Privilege Escalation Detection
+```text
+index=main sourcetype=linux_auth "sudo"
+```
+**Explanation:**
+
+Monitors usage of sudo, which may indicate privilege escalation after initial access.
 
 ## 🧪 Attack Simulation
 
@@ -132,9 +155,9 @@ The Splunk dashboard includes:
 
 ## 🔥 Conclusion
 
-This project demonstrates a practical SOC workflow:
+This project demonstrates a real SOC workflow:
 
-log collection → analysis → detection → visualization.
+Log Collection → Analysis → Detection → Visualization
 
 It provides hands-on experience in SIEM operations and threat detection, aligned with real-world SOC analyst responsibilities.
 
@@ -143,6 +166,11 @@ It provides hands-on experience in SIEM operations and threat detection, aligned
 All screenshots are available in the `screenshots/` folder.
 
 ---
+
+## 👤 Author
+
+### Manoj Kumar S
+##### Aspiring SOC Analyst | Cybersecurity Enthusiast
 
 ## 🔗 Connect With Me
 
